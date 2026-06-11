@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9컷 액자 메이커</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Nine Photo Frame Maker</p>
+        <h1>9컷 액자 메이커</h1>
+        <p class="intro">사진 9장을 넣고 원하는 액자 스타일로 3x3 콜라주를 만듭니다.</p>
+      </div>
+      <div class="counter" aria-label="사진 개수">
+        <strong id="photoCount">0</strong>
+        <span>/ 9</span>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <aside class="panel controls" aria-label="제작 도구">
+        <label class="drop-zone" for="photoInput">
+          <input id="photoInput" type="file" accept="image/*" multiple>
+          <strong>사진 9장 넣기</strong>
+          <span>여러 장을 한 번에 선택하거나 다시 선택해 교체</span>
+        </label>
+
+        <div class="control-group">
+          <label for="frameStyle">액자 스타일</label>
+          <select id="frameStyle">
+            <option value="gallery">화이트 갤러리</option>
+            <option value="black">블랙 갤러리</option>
+            <option value="wood">우드 프레임</option>
+            <option value="polaroid">폴라로이드</option>
+            <option value="film">필름 스트립</option>
+            <option value="soft">소프트 라운드</option>
+            <option value="scrap">스크랩북</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="canvasRatio">출력 비율</label>
+          <select id="canvasRatio">
+            <option value="square">1:1 정사각</option>
+            <option value="portrait">4:5 세로</option>
+            <option value="story">9:16 스토리</option>
+            <option value="landscape">16:9 가로</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="titleInput">제목</label>
+          <input id="titleInput" maxlength="34" value="Blue House Frame">
+        </div>
+
+        <div class="control-group">
+          <label for="subtitleInput">설명</label>
+          <input id="subtitleInput" maxlength="60" value="9 photos in a framed grid">
+        </div>
+
+        <div class="range-grid">
+          <label>
+            바깥 여백
+            <input id="outerPadding" type="range" min="24" max="150" value="72">
+          </label>
+          <label>
+            사진 간격
+            <input id="gridGap" type="range" min="0" max="48" value="18">
+          </label>
+          <label>
+            액자 두께
+            <input id="frameSize" type="range" min="0" max="54" value="18">
+          </label>
+          <label>
+            모서리
+            <input id="cornerRadius" type="range" min="0" max="48" value="16">
+          </label>
+        </div>
+
+        <div class="color-row">
+          <label>
+            배경색
+            <input id="backgroundColor" type="color" value="#f3f5f7">
+          </label>
+          <label>
+            액자색
+            <input id="frameColor" type="color" value="#ffffff">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="sampleButton" type="button">샘플 넣기</button>
+          <button id="clearButton" type="button">비우기</button>
+          <button id="downloadButton" type="button">PNG 저장</button>
+        </div>
+        <p id="message" class="message" role="status"></p>
+        <div id="downloadShelf" class="download-shelf" aria-live="polite"></div>
+      </aside>
+
+      <section class="preview-area" aria-label="미리보기">
+        <canvas id="previewCanvas" width="1600" height="1600"></canvas>
+      </section>
+    </section>
+
+    <section class="thumb-panel" aria-label="사진 목록">
+      <div id="thumbGrid" class="thumb-grid"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
